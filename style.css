@@ -42,3 +42,7 @@ span{
     padding: 0;
     margin: 0;
 }
+
+.painted {
+    background-color: black;
+}

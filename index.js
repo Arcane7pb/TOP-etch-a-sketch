@@ -4,9 +4,8 @@ function getStarted (times) {
         createSquare(times);
         
     };
+    paint = document.querySelectorAll(".grid")
 }
-
-//pensar en fer linies * la cuantitat de quadrats demanada 16*16 etxc
 
 const container = document.querySelector(".container");
 
@@ -32,10 +31,11 @@ button.addEventListener("click", () => {
             alert("Error number must be between 0 and 100");
         }
     });
-    
 
-
+let paint = document.querySelectorAll(".grid");
 
 getStarted(16)
 
 
+
+paint.addEventListener("mouseenter", ()=> paint.setAttribute("class","paint"));
