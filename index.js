@@ -13,6 +13,7 @@ function createSquare (times) {
     square.style.minWidth = `${100/times}%`;
     square.style.paddingTop = `${(100/times-0.2)}%`;
     square.style.minHeight = `${(100/times)}%`;
+    square.setAttribute("class", "grid")
     container.appendChild(square);
 }
 let button = document.querySelector("button")
