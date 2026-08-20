@@ -47,13 +47,13 @@ function eraseSquare(event) {
 function paintMode () {
     clicking = 0
     if (paint === 0) {
-        container.removeEventListener("mousedown", eraseSquare);
+        container.removeEventListener("mouseover", eraseSquare);
         container.removeEventListener ("mousedown", paintClickPress);
         container.removeEventListener ("mouseover", paintClickHold);
         container.removeEventListener ("mouseup", paintClickRelease);
         container.addEventListener ("mouseover",paintAuto);
     } else if (paint === 1) {
-        container.removeEventListener("mousedown", eraseSquare);
+        container.removeEventListener("mouseover", eraseSquare);
         container.removeEventListener("mouseover", paintAuto);
         container.addEventListener ("mousedown", paintClickPress);
         container.addEventListener ("mouseover", paintClickHold);
@@ -63,7 +63,7 @@ function paintMode () {
         container.removeEventListener ("mousedown", paintClickPress);
         container.removeEventListener ("mouseover", paintClickHold);
         container.removeEventListener ("mouseup", paintClickRelease);
-        container.addEventListener ("mousedown",eraseSquare);
+        container.addEventListener ("mouseover",eraseSquare);
     }
     
 
