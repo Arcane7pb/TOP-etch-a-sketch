@@ -16,6 +16,24 @@ function createSquare (times) {
     square.setAttribute("class", "grid")
     container.appendChild(square);
 }
+
+function paint(event) {
+    event.target.setAttribute("class","painted");    
+    // console.log(event.target);                   //verification
+}
+
+function paintClick () {
+    container.removeEventListener("mouseover",paint);
+    container.addEventListener ("mousedown",paint);
+
+}
+
+function paintAuto () {
+    container.removeEventListener("mousedown",paint);
+    container.addEventListener ("mouseover",paint)
+
+}
+
 let sizeButton = document.querySelector(".size")
 
 sizeButton.addEventListener("click", () => {
@@ -35,10 +53,12 @@ getStarted(16)
 
 
 
-//ads a general listener so we dont have to set the event listener to each square when initializing the square
+//ads a general listener so we don't have to set the event listener to each square when initializing the square
+let autoButton = document.querySelector(".auto");
+let clickButton = document.querySelector(".click");
 
-container.addEventListener("mouseover", (event)=> {
-    event.target.setAttribute("class","painted");    
-    // console.log(event.target);                   //verification
-;
-    })
+autoButton.addEventListener("click", paintAuto);
+
+clickButton.addEventListener("click", paintClick);
+
+paintAuto()
