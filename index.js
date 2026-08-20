@@ -16,15 +16,15 @@ function createSquare (times) {
     square.setAttribute("class", "grid")
     container.appendChild(square);
 }
-let button = document.querySelector("button")
+let sizeButton = document.querySelector(".size")
 
-button.addEventListener("click", () => {
+sizeButton.addEventListener("click", () => {
         let times = prompt("Insert how many boxes of width do you want","Max 100");
         if (times <= 100 && times >= 0){
             while (container.firstChild){
                 container.removeChild(container.lastChild);
             };
-            button.textContent = `${times} x ${times}`;
+            sizeButton.textContent = `${times} x ${times}`;
             return getStarted(times)
         } else {
             alert("Error number must be between 0 and 100");
