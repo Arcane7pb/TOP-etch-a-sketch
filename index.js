@@ -4,7 +4,6 @@ function getStarted (times) {
         createSquare(times);
         
     };
-    paint = document.querySelectorAll(".grid")
 }
 
 const container = document.querySelector(".container");
@@ -15,6 +14,10 @@ function createSquare (times) {
     square.style.paddingTop = `${(100/times-0.2)}%`;
     square.style.minHeight = `${(100/times)}%`;
     square.setAttribute("class","grid");
+    square.addEventListener("mouseenter",() => {
+        console.log("entered")
+        square.setAttribute("class","painted");
+        });
     container.appendChild(square);
 }
 let button = document.querySelector("button")
@@ -32,10 +35,11 @@ button.addEventListener("click", () => {
         }
     });
 
-let paint = document.querySelectorAll(".grid");
-
 getStarted(16)
 
 
 
-paint.addEventListener("mouseenter", ()=> paint.setAttribute("class","paint"));
+
+// container.addEventListener("mouseenter", ()=> {
+//         console.log("entered")
+//         container.setAttribute("class","painted")})
