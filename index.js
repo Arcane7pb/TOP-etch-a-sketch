@@ -17,20 +17,55 @@ function createSquare (times) {
     container.appendChild(square);
 }
 
-function paint(event) {
-    event.target.setAttribute("class","painted");    
+let paint = 0
+let clicking = 0
+
+function paintAuto(event) {
+    event.target.classList.add("painted");    
+    console.log(event.target);                   //verification
+}
+
+function paintClickPress (event){
+    event.target.classList.add("painted");
+    clicking = 1
+}
+
+function paintClickHold (event){
+    if (clicking === 1) event.target.classList.add("painted");
+}
+
+function paintClickRelease (event){
+    if (clicking === 1) event.target.classList.add("painted");
+    clicking = 0
+}
+
+function eraseSquare(event) {
+    event.target.classList.remove("painted");    
     // console.log(event.target);                   //verification
 }
 
-function paintClick () {
-    container.removeEventListener("mouseover",paint);
-    container.addEventListener ("mousedown",paint);
-
-}
-
-function paintAuto () {
-    container.removeEventListener("mousedown",paint);
-    container.addEventListener ("mouseover",paint)
+function paintMode () {
+    clicking = 0
+    if (paint === 0) {
+        container.removeEventListener("mousedown", eraseSquare);
+        container.removeEventListener ("mousedown", paintClickPress);
+        container.removeEventListener ("mouseover", paintClickHold);
+        container.removeEventListener ("mouseup", paintClickRelease);
+        container.addEventListener ("mouseover",paintAuto);
+    } else if (paint === 1) {
+        container.removeEventListener("mousedown", eraseSquare);
+        container.removeEventListener("mouseover", paintAuto);
+        container.addEventListener ("mousedown", paintClickPress);
+        container.addEventListener ("mouseover", paintClickHold);
+        container.addEventListener ("mouseup", paintClickRelease);
+    } else {
+        container.removeEventListener("mouseover", paintAuto);
+        container.removeEventListener ("mousedown", paintClickPress);
+        container.removeEventListener ("mouseover", paintClickHold);
+        container.removeEventListener ("mouseup", paintClickRelease);
+        container.addEventListener ("mousedown",eraseSquare);
+    }
+    
 
 }
 
@@ -56,9 +91,21 @@ getStarted(16)
 //ads a general listener so we don't have to set the event listener to each square when initializing the square
 let autoButton = document.querySelector(".auto");
 let clickButton = document.querySelector(".click");
+let eraseButton = document.querySelector(".erase");
 
-autoButton.addEventListener("click", paintAuto);
+autoButton.addEventListener("click", () => {
+    paint = 0;
+    paintMode()
+});
 
-clickButton.addEventListener("click", paintClick);
+clickButton.addEventListener("click", () => {
+    paint = 1;
+    paintMode()
+});
 
-paintAuto()
+eraseButton.addEventListener("click", () => {
+    paint = 2;
+    paintMode()
+});
+
+paintMode()
