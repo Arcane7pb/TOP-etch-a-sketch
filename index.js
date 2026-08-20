@@ -13,11 +13,6 @@ function createSquare (times) {
     square.style.minWidth = `${100/times}%`;
     square.style.paddingTop = `${(100/times-0.2)}%`;
     square.style.minHeight = `${(100/times)}%`;
-    square.setAttribute("class","grid");
-    square.addEventListener("mouseenter",() => {
-        console.log("entered")
-        square.setAttribute("class","painted");
-        });
     container.appendChild(square);
 }
 let button = document.querySelector("button")
@@ -39,7 +34,10 @@ getStarted(16)
 
 
 
+//ads a general listener so we dont have to set the event listener to each square when initializing the square
 
-// container.addEventListener("mouseenter", ()=> {
-//         console.log("entered")
-//         container.setAttribute("class","painted")})
+container.addEventListener("mouseover", (event)=> {
+    event.target.setAttribute("class","painted");    
+    // console.log(event.target);                   //verification
+;
+    })
